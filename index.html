@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment comparison: a hyper-parameter sweep | Lattice Grid</title>
+<link rel="icon" href="data:,">
+<script>
+  if (new URLSearchParams(location.search).get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+</script>
+<script>
+  // Where the library comes from. `false` loads the published release from the CDN;
+  // `true` loads a local build from vendor/ instead (not part of this repository).
+  const LOCAL = false;
+  const LIB = LOCAL ? 'vendor/' : 'https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.85.0/';
+  document.write('<link rel="stylesheet" href="' + LIB + 'lattice-grid.min.css">');
+  for (const file of ['lattice-grid.min.js', 'modules/charts.min.js']) {
+    document.write('<script src="' + LIB + file + '"><' + '/script>');
+  }
+</script>
+<style>
+  body { margin: 0; font: 13px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: var(--lattice-background, #fff); color: var(--lattice-foreground, #14171a); }
+  header { padding: 10px 14px 6px; border-bottom: 1px solid var(--line, #dfe3e6); }
+  h1 { font-size: 1.05rem; margin: 0 0 3px; }
+  p.lede { margin: 0 0 6px; color: var(--lattice-foreground-muted, #5b6570); max-width: 110ch; font-size: 12.5px; }
+  #summary { font-variant-numeric: tabular-nums; font-weight: 600; margin-bottom: 4px; }
+  .layout { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 560px; gap: 8px; padding: 8px 14px; }
+  .panel { border: 1px solid var(--line, #dfe3e6); border-radius: 6px; display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  .panel__head { font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+                 color: var(--lattice-foreground-muted, #5b6570); padding: 5px 8px; border-bottom: 1px solid var(--line, #dfe3e6); }
+  .panel__body { flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; }
+  #grid, #chart { position: absolute; inset: 0; }
+  footer { font-size: 11px; color: var(--lattice-foreground-muted, #5b6570); padding: 0 14px 14px; }
+  footer a { color: var(--lattice-accent, #1f6feb); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Which run won? Comparing a 48-run hyper-parameter sweep</h1>
+  <p class="lede">A small classifier was trained 48 times, once per optimiser, learning rate and batch size. Runs are grouped
+    by optimiser; the best run is pinned on top; every sparkline is that run's validation-loss curve drawn on its own scale,
+    and the metric columns are colour-scaled. Tick runs to overlay their loss curves on the chart.</p>
+  <div id="summary" role="status" aria-live="polite"></div>
+</header>
+<div class="layout">
+  <div class="panel"><div class="panel__head">Runs &mdash; tick to compare</div>
+    <div class="panel__body"><div id="grid"></div></div></div>
+  <div class="panel"><div class="panel__head">Validation loss by epoch &mdash; selected runs</div>
+    <div class="panel__body"><div id="chart"></div></div></div>
+  <div id="curves" hidden></div>
+</div>
+<footer>
+  Data: <a href="https://github.com/allisonhorst/palmerpenguins">Palmer Penguins</a> (CC0 1.0), 333 complete rows, 256 train / 86
+  validation. The run log is precomputed by <code>tools/sweep.py</code> (seeded, standard library only) into
+  <code>data/runs.json</code>. Lattice Grid <span id="version"></span> &middot; <a href="README.md">README</a>.
+</footer>
+<script type="module" src="app.js?v=20261002a"></script>
+</body>
+</html>
