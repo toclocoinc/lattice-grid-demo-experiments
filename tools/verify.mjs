@@ -39,7 +39,7 @@ try {
         theme: document.documentElement.dataset.theme || 'light',
       };
     });
-    check(s.version === '1.86.2', `${theme}: grid is 1.86.2`, s.version);
+    check(s.version === '1.86.3', `${theme}: grid is 1.86.3`, s.version);
     check(s.runs === 48, `${theme}: 48 runs`, String(s.runs));
     check(s.pinned, `${theme}: best run pinned row shown`);
     check(s.groupRows >= 2, `${theme}: grouped by optimiser`, `${s.groupRows} group rows in view, each (12) runs`);
