@@ -21,7 +21,7 @@ Light and dark: add `?theme=dark`.
     python3 -m http.server      # then open http://localhost:8000/
 
 The grid is loaded from the published package
-`https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.86.2/` (set `LOCAL = true`
+`https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.86.3/` (set `LOCAL = true`
 in `index.html` to use a build in `vendor/` instead). No licence key, no API
 key, no analytics: nothing is sent anywhere. Note that without a key the grid
 shows its trial watermark on any host other than localhost.
