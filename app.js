@@ -5,7 +5,7 @@ const el = (id) => document.getElementById(id);
 const dark = document.documentElement.dataset.theme === 'dark';
 el('version').textContent = LatticeGrid.getVersion ? LatticeGrid.getVersion() : '';
 
-const log = await (await fetch('data/runs.json?v=20261003u')).json();
+const log = await (await fetch('data/runs.json?v=20261005a')).json();
 const rows = log.runs;
 const best = rows.reduce((a, b) => (b.val_loss < a.val_loss ? b : a));
 
