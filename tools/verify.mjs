@@ -39,7 +39,7 @@ try {
         theme: document.documentElement.dataset.theme || 'light',
       };
     });
-    check(s.version === '1.86.7', `${theme}: grid is 1.86.7`, s.version);
+    check(s.version === '1.111.7', `${theme}: grid is 1.111.7`, s.version);
     check(s.runs === 48, `${theme}: 48 runs`, String(s.runs));
     check(s.pinned, `${theme}: best run pinned row shown`);
     check(s.groupRows >= 2, `${theme}: grouped by optimiser`, `${s.groupRows} group rows in view, each (12) runs`);
@@ -55,9 +55,9 @@ try {
     await sleep(300);
     const none = await overlay();
     check(none.series.length === 0 || none.series.every((x) => !x), `${theme}: nothing selected -> no series`, JSON.stringify(none.series));
-    const targets = await page.evaluate(() => [...document.querySelectorAll('#grid .lat-row[data-region="centre"][data-key^="run-"]')].map((r) => r.dataset.key).slice(0, 3));
+    const targets = await page.evaluate(() => [...document.querySelectorAll('#grid .lat-row[data-region="start"][data-key^="run-"]')].map((r) => r.dataset.key).slice(0, 3));
     for (const run of targets) {
-      const box = await page.$(`#grid .lat-row[data-key="${run}"] input[type="checkbox"]`);
+      const box = await page.$(`#grid .lat-row[data-region="start"][data-key="${run}"] input.lat-checkbox-input`);
       if (!box) { check(false, `${theme}: checkbox for ${run} found`); continue; }
       await box.click();
       await sleep(250);
