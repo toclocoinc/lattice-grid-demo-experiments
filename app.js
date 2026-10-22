@@ -17,10 +17,10 @@ const accScale = { from: 'quantile', colours: [bad, mid, good] };
 const spark = { render: 'line', props: { series: 'curve', min: 'curve_min', max: 'curve_max', label: false } }; // min/max name row fields: each row on its own scale
 const columns = [
   { field: 'run', title: 'run', layout: { width: 96 } },
-  { field: 'optimiser', title: 'optimiser', group: { enabled: true, index: 0 }, layout: { width: 40 } },
+  { field: 'optimiser', title: 'optimiser', group: { enabled: true, index: 0 }, layout: { width: innerWidth < 700 ? 170 : 190 } },
   { field: 'lr', type: 'number', title: 'lr', layout: { width: 60 } },
   { field: 'batch_size', type: 'number', title: 'batch', layout: { width: 60 } },
-  { field: 'val_loss', type: 'number', title: 'val loss', format: { decimals: 4 }, layout: { width: 80 } },
+  { field: 'val_loss', type: 'number', title: 'val loss', format: { decimals: 4 }, layout: { width: 92 } },
   { field: 'val_acc', type: 'number', title: 'val acc', format: { decimals: 3 }, layout: { width: 72 } },
   { field: 'train_loss', type: 'number', title: 'train loss', format: { decimals: 4 }, layout: { width: 80 } },
   { field: 'best_epoch', type: 'number', title: 'best ep.', layout: { width: 70 } },

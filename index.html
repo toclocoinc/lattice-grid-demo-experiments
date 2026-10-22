@@ -31,6 +31,7 @@
                  color: var(--lattice-foreground-muted, #5b6570); padding: 5px 8px; border-bottom: 1px solid var(--line, #dfe3e6); }
   .panel__body { flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; }
   #grid, #chart { position: absolute; inset: 0; }
+  @media (max-width: 700px) { .layout { grid-template-columns: 1fr; grid-template-rows: 460px 380px; } }
   footer { font-size: 11px; color: var(--lattice-foreground-muted, #5b6570); padding: 0 14px 14px; }
   footer a { color: var(--lattice-accent, #1f6feb); }
 </style>
